@@ -89,7 +89,7 @@ class LoginSignup extends React.Component
         return (
             <div>
                 SIGNUP!
-                <button onClick = {() => {this.swapState()}}>Go to Login</button>
+                <button onClick = {() => {this.swapState()}}>Go to Login GOOOO!!</button>
             </div>
         );
     };
