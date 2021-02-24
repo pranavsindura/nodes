@@ -4,21 +4,21 @@ import './LoginSignup.css'
 import {Button, Container, Card, Row, Col, Form} from 'react-bootstrap'
 
 const STATE = Object.freeze({LOGIN: 0, SIGNUP: 1});
-const defaultLoginDetails = Object.freeze({
+const defaultLoginDetails = {
     username : '',
     password : ''
-});
+};
 
 class LoginSignup extends React.Component
 {
     state = {
         which : STATE.LOGIN,
-        loginDetails : defaultLoginDetails,
+        loginDetails : {...defaultLoginDetails},
     };
 
     componentDidUpdate()
     {
-
+        console.log(this.state);
     }
 
     swapState = () => {
@@ -27,7 +27,7 @@ class LoginSignup extends React.Component
         if(which === STATE.LOGIN) which = STATE.SIGNUP;
         else if(which === STATE.SIGNUP) which = STATE.LOGIN;
 
-        this.setState({which, loginDetails : defaultLoginDetails});
+        this.setState({which, loginDetails : {...defaultLoginDetails}});
     };
 
     handleLoginChange = (event) =>
