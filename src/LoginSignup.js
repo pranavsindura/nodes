@@ -4,10 +4,10 @@ import './LoginSignup.css'
 import {Button, Container, Card, Row, Col, Form} from 'react-bootstrap'
 
 const STATE = Object.freeze({LOGIN: 0, SIGNUP: 1});
-const defaultLoginDetails = Object.freeze({
+const defaultLoginDetails = {
     username : '',
     password : ''
-});
+};
 
 class LoginSignup extends React.Component
 {
