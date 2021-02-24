@@ -1,5 +1,5 @@
 .login-card {
-    width: 30%;
+    width: 40%;
     border: none;
 }
 
@@ -34,4 +34,11 @@
 	align-items: center;
 	justify-content: center;
 	display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .login-card{
+    width: 90%;
+  }
 }
