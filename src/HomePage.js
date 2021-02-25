@@ -21,7 +21,7 @@ class HomePage extends React.Component {
 		// Load from User's saved notes
 		let content = require('./content.json').content;
 		for (let i = 0; i < content.length; i++)
-			if (!filterText.length || (filterText.length > 0 && content[i].toLowerCase().includes(filterText)))
+			if (!filterText.length || (filterText.length > 0 && content[i].toLowerCase().includes(filterText.toLowerCase())))
 				notes.push(
 					<Card key={'card-' + i}>
 						<Card.Body>
