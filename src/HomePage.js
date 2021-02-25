@@ -2,27 +2,42 @@ import React from 'react';
 import { Container, NavDropdown, Button, Navbar, Form, Card, CardColumns } from 'react-bootstrap';
 import './HomePage.css';
 class HomePage extends React.Component {
-	state = {};
+	state = {
+		filterText: ''
+	};
+
+    handleFilterChange = (e) => {
+        e.preventDefault();
+        const target = e.target;
+        const name = target.name;
+        const value = target.value;
+        let state = this.state;
+        state[name] = value;
+        this.setState(state);
+    }
+
+	getNotes = (filterText) => {
+		let notes = [];
+		// Load from User's saved notes
+		let content = require('./content.json').content;
+		for (let i = 0; i < content.length; i++)
+			if (!filterText.length || (filterText.length > 0 && content[i].toLowerCase().includes(filterText)))
+				notes.push(
+					<Card key={'card-' + i}>
+						<Card.Body>
+							<Card.Title>Card title</Card.Title>
+							<Card.Text>{content[i]}</Card.Text>
+						</Card.Body>
+						<Card.Footer>
+							<small className="text-muted">Last updated 3 mins ago</small>
+						</Card.Footer>
+					</Card>
+				);
+		return notes;
+	}
 
 	render() {
-		let card_list = [];
-        
-		for (let i = 0; i < 10; i++)
-			card_list.push(
-				<Card key={"card-" + i}>
-					<Card.Body>
-						<Card.Title>Card title</Card.Title>
-						<Card.Text>
-							This is a wider card with supporting text below as a natural lead-in to additional content.
-							This content is a little bit longer.
-						</Card.Text>
-					</Card.Body>
-					<Card.Footer>
-						<small className="text-muted">Last updated 3 mins ago</small>
-					</Card.Footer>
-				</Card>
-			);
-
+		const filterText = this.state.filterText;
 		return (
 			<Container fluid className="home">
 				<Container>
@@ -31,7 +46,15 @@ class HomePage extends React.Component {
 						<Navbar.Toggle />
 						<Navbar.Collapse>
 							<Form inline>
-								<Form.Control type="input" placeholder="Search" />
+								<Form.Control
+									name="filterText"
+									value={filterText}
+									onChange={(e) => {
+										this.handleFilterChange(e);
+									}}
+									type="input"
+									placeholder="Search"
+								/>
 							</Form>
 							<NavDropdown title="Create New" className="nodes-text">
 								<NavDropdown.Item>Note</NavDropdown.Item>
@@ -44,9 +67,7 @@ class HomePage extends React.Component {
 					</Navbar>
 				</Container>
 				<Container>
-					<CardColumns>
-                        {card_list}
-                    </CardColumns>
+					<CardColumns>{this.getNotes(filterText)}</CardColumns>
 				</Container>
 			</Container>
 		);
