@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
 	BrowserRouter as Router,
-	// Link,
+	Link,
 	Route,
 	Switch
 } from 'react-router-dom';
@@ -23,6 +23,7 @@ function App() {
 							<HomePage />
 						</Route>
 						<Route path="/">
+							<Link to="/home">Goto Home</Link>
 							<LoginSignup />
 						</Route>
 					</Switch>
