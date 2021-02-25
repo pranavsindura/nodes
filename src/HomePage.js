@@ -6,9 +6,10 @@ class HomePage extends React.Component {
 
 	render() {
 		let card_list = [];
+        
 		for (let i = 0; i < 10; i++)
 			card_list.push(
-				<Card>
+				<Card key={"card-" + i}>
 					<Card.Body>
 						<Card.Title>Card title</Card.Title>
 						<Card.Text>
