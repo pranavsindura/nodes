@@ -7,7 +7,7 @@ import { FormFeedback } from "reactstrap";
 
 const STATE = Object.freeze({ LOGIN: 0, SIGNUP: 1 });
 const defaultLoginDetails = {
-  username: "",
+  email: "",
   password: "",
 };
 
@@ -64,13 +64,6 @@ class LoginSignup extends React.Component {
     this.setState({ loginDetails });
   };
 
-  handleLoginSubmit = () => {
-    const loginDetails = this.state.loginDetails;
-    const username = loginDetails.username;
-    const password = loginDetails.password;
-    alert("Thanks " + username + ", your pass is " + password);
-  };
-
   validate(firstname, lastname, email, password, confirmpassword) {
     const errors = {
       firstname: "",
@@ -105,52 +98,11 @@ class LoginSignup extends React.Component {
     }
     return errors;
   }
-
-  handleSignupChange(event) {
-    event.preventDefault();
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    let signupDetails = this.state.signupDetails;
-    signupDetails[name] = value;
-    this.setState({ signupDetails });
-  }
-
-  handleSignup(event) {
-    if (
-      this.state.signupDetails.firstname.length > 0 &&
-      this.state.signupDetails.lastname.length > 0 &&
-      this.state.signupDetails.email.length > 0 &&
-      this.state.signupDetails.password.length > 0 &&
-      this.state.signupDetails.confirmpassword.length
-    ) {
-      const errors = this.validate(
-        this.state.signupDetails.firstname,
-        this.state.signupDetails.lastname,
-        this.state.signupDetails.email,
-        this.state.signupDetails.password,
-        this.state.signupDetails.confirmpassword
-      );
-      let len =
-        errors.firstname.length +
-        errors.lastname.length +
-        errors.email.length +
-        errors.password.length +
-        errors.confirmpassword.length;
-      if (len === 0) {
-        alert("You are Resgistered as " + this.state.signupDetails.email);
-      }
-      event.preventDefault();
-    } else {
-      alert("Invalid Details");
-    }
-  }
-
-  handleBlur = (field) => (evt) => {
-    this.setState({
-      touched: { ...this.state.touched, [field]: true },
-    });
+  handleLoginSubmit = () => {
+    const loginDetails = this.state.loginDetails;
+    const email = loginDetails.email;
+    const password = loginDetails.password;
+    alert("Thanks " + email + ", your pass is " + password);
   };
 
   Login = (props) => {
@@ -161,13 +113,13 @@ class LoginSignup extends React.Component {
           <Card.Header className="login-header">LOGIN</Card.Header>
           <Card.Body className="login-body">
             <Form>
-              <Form.Group controlId="loginUsername">
-                <Form.Label>Username</Form.Label>
+              <Form.Group controlId="loginEmail">
+                <Form.Label>Email</Form.Label>
                 <Form.Control
-                  value={loginDetails.username}
-                  name="username"
-                  type="input"
-                  placeholder="Enter Username"
+                  value={loginDetails.email}
+                  name="email"
+                  type="email"
+                  placeholder="Enter Email"
                   onChange={(e) => {
                     this.handleLoginChange(e);
                   }}
@@ -215,6 +167,53 @@ class LoginSignup extends React.Component {
         </Card>
       </Container>
     );
+  };
+
+  handleSignupChange(event) {
+    event.preventDefault();
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    let signupDetails = this.state.signupDetails;
+    signupDetails[name] = value;
+    this.setState({ signupDetails });
+  }
+
+  handleSignup(event) {
+    if (
+      this.state.signupDetails.firstname.length > 0 &&
+      this.state.signupDetails.lastname.length > 0 &&
+      this.state.signupDetails.email.length > 0 &&
+      this.state.signupDetails.password.length > 0 &&
+      this.state.signupDetails.confirmpassword.length
+    ) {
+      const errors = this.validate(
+        this.state.signupDetails.firstname,
+        this.state.signupDetails.lastname,
+        this.state.signupDetails.email,
+        this.state.signupDetails.password,
+        this.state.signupDetails.confirmpassword
+      );
+      let len =
+        errors.firstname.length +
+        errors.lastname.length +
+        errors.email.length +
+        errors.password.length +
+        errors.confirmpassword.length;
+      if (len === 0) {
+        alert("You are Resgistered as " + this.state.signupDetails.email);
+      }
+      event.preventDefault();
+    } else {
+      alert("Invalid Details");
+    }
+  }
+
+  handleBlur = (field) => (evt) => {
+    this.setState({
+      touched: { ...this.state.touched, [field]: true },
+    });
   };
 
   Signup = (props) => {
