@@ -5,7 +5,7 @@ import {Button, Container, Card, Row, Col, Form} from 'react-bootstrap'
 
 const STATE = Object.freeze({LOGIN: 0, SIGNUP: 1});
 const defaultLoginDetails = {
-    username : '',
+    email : '',
     password : ''
 };
 
@@ -45,9 +45,9 @@ class LoginSignup extends React.Component
     handleLoginSubmit = () =>
     {
         const loginDetails = this.state.loginDetails;
-        const username = loginDetails.username;
+        const email = loginDetails.email;
         const password = loginDetails.password;
-        alert('Thanks ' + username + ', your pass is ' + password);
+        alert('Thanks ' + email + ', your pass is ' + password);
     }
 
     Login = (props) =>
@@ -59,9 +59,9 @@ class LoginSignup extends React.Component
                     <Card.Header className="login-header">LOGIN</Card.Header>
                     <Card.Body className="login-body">
                         <Form>
-                            <Form.Group controlId="loginUsername">
-                                <Form.Label>Username</Form.Label>
-                                <Form.Control value={loginDetails.username} name="username" type="input" placeholder="Enter Username" onChange={(e) => {this.handleLoginChange(e)}}/>
+                            <Form.Group controlId="loginEmail">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control value={loginDetails.email} name="email" type="email" placeholder="Enter Email" onChange={(e) => {this.handleLoginChange(e)}}/>
                             </Form.Group>
                             <Form.Group controlId="loginPassword">
                                 <Form.Label>Password</Form.Label>
