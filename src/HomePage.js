@@ -6,22 +6,25 @@ class HomePage extends React.Component {
 		filterText: ''
 	};
 
-    handleFilterChange = (e) => {
-        e.preventDefault();
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
-        let state = this.state;
-        state[name] = value;
-        this.setState(state);
-    }
+	handleFilterChange = (e) => {
+		e.preventDefault();
+		const target = e.target;
+		const name = target.name;
+		const value = target.value;
+		let state = this.state;
+		state[name] = value;
+		this.setState(state);
+	};
 
 	getNotes = (filterText) => {
 		let notes = [];
 		// Load from User's saved notes
 		let content = require('./content.json').content;
 		for (let i = 0; i < content.length; i++)
-			if (!filterText.length || (filterText.length > 0 && content[i].toLowerCase().includes(filterText.toLowerCase())))
+			if (
+				!filterText.length ||
+				(filterText.length > 0 && content[i].toLowerCase().includes(filterText.toLowerCase()))
+			)
 				notes.push(
 					<Card key={'card-' + i}>
 						<Card.Body>
@@ -34,7 +37,7 @@ class HomePage extends React.Component {
 					</Card>
 				);
 		return notes;
-	}
+	};
 
 	render() {
 		const filterText = this.state.filterText;
@@ -45,7 +48,12 @@ class HomePage extends React.Component {
 						<Navbar.Brand className="nodes-text">NODES | User</Navbar.Brand>
 						<Navbar.Toggle />
 						<Navbar.Collapse>
-							<Form inline>
+							<Form
+								inline
+								onSubmit={(e) => {
+									e.preventDefault();
+								}}
+							>
 								<Form.Control
 									name="filterText"
 									value={filterText}
