@@ -1,44 +1,48 @@
 .login-card {
-    width: 40%;
-    border: none;
+  width: 40%;
+  border: none;
 }
 
-.login-header{
-    text-align: center;
-    background: none;
-    border: none;
+.login-header {
+  text-align: center;
+  background: none;
+  border: none;
 }
 
-.login-body{
-    border: 1px lightgrey solid;
+.login-body {
+  border: 1px lightgrey solid;
 }
 
-.login-footer{
-    text-align: center;
-    background: none;
-    border: none;
+.login-footer {
+  text-align: center;
+  background: none;
+  border: none;
 }
 
-
-.login-button{
-    border-radius: 0px;
-    background-color: #dc3545;
-    border: none;
+.login-button {
+  border-radius: 0px;
+  background-color: #dc3545;
+  border: none;
 }
 
-.login-button:hover, .login-button:active{
-    background-color: crimson;
+.login-button:hover,
+.login-button:active {
+  background-color: crimson;
 }
 
 .login {
-	align-items: center;
-	justify-content: center;
-	display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.invalid-feedback {
+  display: block !important;
 }
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-  .login-card{
+  .login-card {
     width: 90%;
   }
 }
