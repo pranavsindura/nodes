@@ -82,11 +82,17 @@ class LoginSignup extends React.Component {
 			errors.lastname = 'Last Name should be >= 2 characters';
 		}
 
-		if (this.state.touched.email && email.split('').filter((x) => x === '@').length !== 1) {
-			errors.email = 'Invalid Email';
-		} else if (this.state.touched.email && email.split('').filter((x) => x === '.').length !== 1) {
-			errors.email = 'Invalid Email';
-		}
+    if (
+      this.state.touched.email &&
+      email.split("").filter((x) => x === "@").length !== 1
+    ) {
+      errors.email = "Invalid Email";
+    } else if (
+      this.state.touched.email &&
+      email.split("").filter((x) => x === ".").length < 1
+    ) {
+      errors.email = "Invalid Email";
+    }
 
 		if (this.state.touched.confirmpassword && password !== confirmpassword) {
 			errors.confirmpassword = 'Enter the same password';
