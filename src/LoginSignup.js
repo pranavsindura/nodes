@@ -88,7 +88,7 @@ class LoginSignup extends React.Component {
       errors.email = "Invalid Email";
     } else if (
       this.state.touched.email &&
-      email.split("").filter((x) => x === ".").length !== 1
+      email.split("").filter((x) => x === ".").length < 1
     ) {
       errors.email = "Invalid Email";
     }
